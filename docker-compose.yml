@@ -5,13 +5,14 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
+            args:
+                APP_ENV: ${APP_ENV}
         image: php:8.2-fpm
         container_name: app
         restart: unless-stopped
         tty: true
         environment:
-            SERVICE_NAME: app
-            SERVICE_TAGS: dev
+            APP_ENV: ${APP_ENV}
         working_dir: /var/www
         volumes:
             - ./:/var/www
